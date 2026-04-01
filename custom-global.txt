@@ -1,0 +1,94 @@
+! ==================================================
+! DNS CONTROL / BYPASS PROTECTION
+! ==================================================
+! Verhindert, dass Clients eigene DoH Resolver nutzen
+||quad9.net^$client=!127.0.0.1,!192.168.178.4
+||cloudflare-dns.com^$client=!127.0.0.1,!192.168.178.4
+||dns.google^
+||dns.nextdns.io^
+||one.one.one.one^
+||dns.adguard-dns.com^
+! ==================================================
+! CORE TRACKING (nur Ergänzungen zu OISD)
+! ==================================================
+||browser-intake-datadoghq.com^
+||api.segment.io^
+||cdn.segment.com^
+! ==================================================
+! APP / SDK / GENERIC TELEMETRY
+! ==================================================
+||analytics.edgekey.net^
+||config.uca.cloud.unity3d.com^
+||youborafds01.com^
+||*.ingest.sentry.io^
+! ==================================================
+! GOOGLE / FIREBASE TELEMETRY
+! ==================================================
+||app-measurement.com^
+||firebaseinstallations.googleapis.com^
+||firebaselogging.googleapis.com^
+! ==================================================
+! PASSWORD / SECURITY TOOLS
+! ==================================================
+||telemetry.1passwordservices.com^
+! ==================================================
+! MICROSOFT TELEMETRY
+! ==================================================
+||mobile.events.data.microsoft.com^
+||browser.events.data.microsoft.com^
+||vortex.data.microsoft.com^
+||settings-win.data.microsoft.com^
+||self.events.data.microsoft.com^
+||v10.events.data.microsoft.com^
+||watson.telemetry.microsoft.com^
+! ==================================================
+! ADOBE TRACKING
+! ==================================================
+||cc-api-data.adobe.io^
+||ims-na1.adobelogin.com^
+||adobe.io^$third-party
+! ==================================================
+! AMAZON / FIRETV / ALEXA
+! ==================================================
+||telemetry.amazon.com^
+||device-metrics-us.amazon.com^
+||device-metrics-us-2.amazon.com^
+||fls-na.amazon.com^
+||fls-eu.amazon.com^
+||log-ingestion.amazon.com^
+||global.telemetry.insights.video.a2z.com^
+||*.minerva.devices.a2z.com^
+! ==================================================
+! META / FACEBOOK TRACKING
+! ==================================================
+||graph.facebook.com^
+||connect.facebook.net^
+! ==================================================
+! TIKTOK / BYTEDANCE TRACKING
+! ==================================================
+||analytics.tiktok.com^
+||log.byteoversea.com^
+! ==================================================
+! FireFox (LOW RISK)
+! ==================================================
+||push.services.mozilla.com^
+! ==================================================
+! SERVICE-SPECIFIC (LOW RISK)
+! ==================================================
+||experimentation.deepl.com^
+||optimizely.com^
+||cdn.optimizely.com^
+||logx.optimizely.com^
+! ==================================================
+! APPLE (TELEMETRY REDUCTION – VORSICHTIG)
+! ==================================================
+||gsp64-ssl.ls.apple.com^
+||metrics.icloud.com^
+||xp.apple.com^
+! ==================================================
+! APPLE – EXPLICIT ALLOW (WICHTIG!)
+! ==================================================
+@@||mask.icloud.com^
+@@||mask-api.icloud.com^
+@@||apple-dns.net^
+@@||icloud.com^
