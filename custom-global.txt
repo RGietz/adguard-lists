@@ -1,12 +1,10 @@
 ! Custom Global Rules
 ! Maintained by Ralf
-! Version: 1.0 vom 01.04.2026
+! Version: 1.0 vom 01.04.2026 18:00
 ! ==================================================
 ! DNS CONTROL / BYPASS PROTECTION
 ! ==================================================
 ! Verhindert, dass Clients eigene DoH Resolver nutzen
-||quad9.net^$client=!127.0.0.1,!192.168.178.4
-||cloudflare-dns.com^$client=!127.0.0.1,!192.168.178.4
 ||dns.google^
 ||dns.nextdns.io^
 ||one.one.one.one^
