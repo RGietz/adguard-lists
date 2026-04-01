@@ -1,3 +1,6 @@
+! Custom Global Rules
+! Maintained by Ralf
+! Version: 1.0 vom 01.04.2026
 ! ==================================================
 ! DNS CONTROL / BYPASS PROTECTION
 ! ==================================================
