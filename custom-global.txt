@@ -1,39 +1,38 @@
-! Custom Global Rules
+! ==================================================
+! Custom Global Rules (HYBRID)
 ! Maintained by Ralf
-! Version: 1.0 vom 01.04.2026 18:00
+! Version: 2.1 (2026-04-01 18:00)
 ! ==================================================
-! DNS CONTROL / BYPASS PROTECTION
+
 ! ==================================================
-! Verhindert, dass Clients eigene DoH Resolver nutzen
+! DNS CONTROL / BYPASS PROTECTION (Policy)
+! ==================================================
 ||dns.google^
 ||dns.nextdns.io^
 ||one.one.one.one^
 ||dns.adguard-dns.com^
+
 ! ==================================================
-! CORE TRACKING (nur Ergänzungen zu OISD)
+! CORE TRACKING (sichtbar behalten)
 ! ==================================================
+! bewusst enthalten für Log-Transparenz
 ||browser-intake-datadoghq.com^
 ||api.segment.io^
 ||cdn.segment.com^
+
 ! ==================================================
-! APP / SDK / GENERIC TELEMETRY
+! APP / SDK – SPEZIALFÄLLE
 ! ==================================================
-||analytics.edgekey.net^
 ||config.uca.cloud.unity3d.com^
-||youborafds01.com^
-||*.ingest.sentry.io^
-! ==================================================
-! GOOGLE / FIREBASE TELEMETRY
-! ==================================================
-||app-measurement.com^
-||firebaseinstallations.googleapis.com^
-||firebaselogging.googleapis.com^
+||.ingest.sentry.io^
+
 ! ==================================================
 ! PASSWORD / SECURITY TOOLS
 ! ==================================================
 ||telemetry.1passwordservices.com^
+
 ! ==================================================
-! MICROSOFT TELEMETRY
+! MICROSOFT TELEMETRY (Policy)
 ! ==================================================
 ||mobile.events.data.microsoft.com^
 ||browser.events.data.microsoft.com^
@@ -42,14 +41,9 @@
 ||self.events.data.microsoft.com^
 ||v10.events.data.microsoft.com^
 ||watson.telemetry.microsoft.com^
+
 ! ==================================================
-! ADOBE TRACKING
-! ==================================================
-||cc-api-data.adobe.io^
-||ims-na1.adobelogin.com^
-||adobe.io^$third-party
-! ==================================================
-! AMAZON / FIRETV / ALEXA
+! AMAZON / FIRETV / ALEXA (Policy + sichtbar)
 ! ==================================================
 ||telemetry.amazon.com^
 ||device-metrics-us.amazon.com^
@@ -58,36 +52,34 @@
 ||fls-eu.amazon.com^
 ||log-ingestion.amazon.com^
 ||global.telemetry.insights.video.a2z.com^
-||*.minerva.devices.a2z.com^
+||.minerva.devices.a2z.com^
+
 ! ==================================================
-! META / FACEBOOK TRACKING
+! META / SOCIAL TRACKING (sichtbar behalten)
 ! ==================================================
 ||graph.facebook.com^
 ||connect.facebook.net^
+
 ! ==================================================
-! TIKTOK / BYTEDANCE TRACKING
+! TIKTOK / BYTEDANCE (sichtbar behalten)
 ! ==================================================
 ||analytics.tiktok.com^
 ||log.byteoversea.com^
+
 ! ==================================================
-! FireFox (LOW RISK)
+! MOZILLA (optional)
 ! ==================================================
 ||push.services.mozilla.com^
+
 ! ==================================================
-! SERVICE-SPECIFIC (LOW RISK)
-! ==================================================
-||experimentation.deepl.com^
-||optimizely.com^
-||cdn.optimizely.com^
-||logx.optimizely.com^
-! ==================================================
-! APPLE (TELEMETRY REDUCTION – VORSICHTIG)
+! APPLE (LOW RISK TELEMETRY REDUCTION)
 ! ==================================================
 ||gsp64-ssl.ls.apple.com^
 ||metrics.icloud.com^
 ||xp.apple.com^
+
 ! ==================================================
-! APPLE – EXPLICIT ALLOW (WICHTIG!)
+! APPLE – EXPLICIT ALLOW (KRITISCH)
 ! ==================================================
 @@||mask.icloud.com^
 @@||mask-api.icloud.com^
