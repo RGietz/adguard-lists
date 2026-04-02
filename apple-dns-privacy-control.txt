@@ -2,7 +2,7 @@
 ! APPLE – CONTROLLED POLICY MATRIX
 ! Goal: Block Private Relay, allow core services
 ! Maintained by Ralf
-! Version: 1.0.1 (2026-04-02)
+! Version: 1.0.2 (2026-04-02)
 !
 ! Scope:
 ! - iOS / macOS / tvOS (DNS-level)
@@ -61,71 +61,4 @@
 !@@||apple.com^
 !@@||icloud.com^
 !@@||apple-dns.net^
-!@@||akadns.net^! ==================================================
-! APPLE – CONTROLLED POLICY MATRIX
-! Goal: Block Private Relay, allow core services
-! Maintained by Ralf
-! Version: 1.0.0 (2026-04-02)
-!
-! Scope:
-! - iOS / macOS / tvOS (DNS-level)
-!
-! Policy:
-! - Block: Private Relay (mask.*, apple-dns)
-! - Reduce: low-risk telemetry
-! - Allow: iCloud, APNs, updates, core services
-!
-! Notes:
-! - Effective only within local network
-! - Optional rules are commented out
-! ==================================================
-
-! -----------------------------
-! PRIVATE RELAY (BLOCK)
-! -----------------------------
-||mask.icloud.com^
-||mask.apple-dns.net^
-
-! -----------------------------
-! CORE SERVICES (ALLOW – notwendig)
-! -----------------------------
-@@||icloud.com^
-@@||apple.com^
-@@||apple-dns.net^
-
-! -----------------------------
-! PUSH / NOTIFICATIONS (kritisch)
-! -----------------------------
-@@||push.apple.com^
-@@||courier.push.apple.com^
-
-! -----------------------------
-! APP STORE / CONTENT DELIVERY
-! -----------------------------
-@@||mzstatic.com^
-@@||apps.apple.com^
-@@||itunes.apple.com^
-
-! -----------------------------
-! ICLOUD PRIVATE SERVICES
-! -----------------------------
-@@||gateway.icloud.com^
-@@||pXX-keyvalueservice.icloud.com^
-
-! -----------------------------
-! OPTIONAL: APPLE TELEMETRY REDUKTION
-! (nur wenn du bewusst reduzieren willst)
-! -----------------------------
-||metrics.icloud.com^
-||xp.apple.com^
-||gsp64-ssl.ls.apple.com^
-
-! Erweiterbar:
-||metrics.apple.com^
-||analytics.apple.com^
-
-! -----------------------------
-! SAFETY NET (falls Probleme)
-! -----------------------------
-!@@||cdn-apple.com^
-!@@||akadns.net^
+!@@||akadns.net^ 
