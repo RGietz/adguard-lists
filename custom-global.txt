@@ -1,15 +1,15 @@
 ! ==================================================
 ! Custom Global Rules (HYBRID)
 ! Maintained by Ralf
-! Version: 2.2 (2026-04-02 09:00)
-! Änderung: DNS CONTROL / BYPASS PROTECTION (Policy) angepasst.
+! Version: 2.3 (2026-04-02 20:00)
+! Change: DNS CONTROL / BYPASS PROTECTION further refined.
 ! ==================================================
 
 ! ==================================================
 ! DNS CONTROL / BYPASS PROTECTION (Policy)
 ! ==================================================
 
-! --- Google DNS ---
+! --- Google ---
 ||dns.google^
 ||dns.google.com^
 ||dns.google.resolve^
@@ -17,26 +17,40 @@
 ||8.8.8.8.in-addr.arpa^
 ||8.8.4.4.in-addr.arpa^
 
-! --- Cloudflare DNS ---
+! --- Cloudflare ---
 ||cloudflare-dns.com^
+||mozilla.cloudflare-dns.com^
 ||one.one.one.one^
+||family.cloudflare-dns.com^
+||security.cloudflare-dns.com^
 
-! --- Quad9 DNS ---
+! --- Quad9 ---
 ||dns.quad9.net^
 ||quad9.net^
 
 ! --- NextDNS ---
 ||dns.nextdns.io^
+||*.dns.nextdns.io^
 
 ! --- AdGuard DNS ---
 ||dns.adguard-dns.com^
+||unfiltered.adguard-dns.com^
+||family.adguard-dns.com^
 
-! --- Mozilla / Firefox DoH ---
-||mozilla.cloudflare-dns.com^
+! --- OpenDNS / Cisco ---
+||doh.opendns.com^
+||dns.opendns.com^
+||resolver1.opendns.com^
+||resolver2.opendns.com^
+||resolver3.opendns.com^
+||resolver4.opendns.com^
 
-! --- Generic DoH patterns (optional, vorsichtig einsetzen) ---
-!||*/dns-query^
-!||*/resolve^
+! --- Weitere bekannte Anbieter ---
+||freedns.controld.com^
+||dns.controld.com^
+||dns.mullvad.net^
+||doh.libredns.gr^
+||dns.libredns.gr^
 
 ! ==================================================
 ! CORE TRACKING (sichtbar behalten)
