@@ -1,8 +1,9 @@
 ! ==================================================
 ! Custom Global Rules (HYBRID)
 ! Maintained by Ralf
-! Version: 2.3 (2026-04-02 20:00)
+! Version: 2.3.1 (2026-04-02 20:15)
 ! Change: DNS CONTROL / BYPASS PROTECTION further refined.
+! Correction of errors in version 2.3
 ! ==================================================
 
 ! ==================================================
@@ -13,9 +14,6 @@
 ||dns.google^
 ||dns.google.com^
 ||dns.google.resolve^
-||dns.googleapis.com^$denyallow=dns.google
-||8.8.8.8.in-addr.arpa^
-||8.8.4.4.in-addr.arpa^
 
 ! --- Cloudflare ---
 ||cloudflare-dns.com^
@@ -51,6 +49,11 @@
 ||dns.mullvad.net^
 ||doh.libredns.gr^
 ||dns.libredns.gr^
+
+! --- Weitere bekannte DoH-Endpunkte ---
+||dns.switch.ch^
+||public.dns.iij.jp^
+||dns.oszx.co^
 
 ! ==================================================
 ! CORE TRACKING (sichtbar behalten)
