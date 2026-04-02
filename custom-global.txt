@@ -1,41 +1,38 @@
 ! ==================================================
 ! Custom Global Rules (HYBRID)
 ! Maintained by Ralf
-! Version: 2.3.1 (2026-04-02 20:15)
-! Change: DNS CONTROL / BYPASS PROTECTION further refined.
-! Correction of errors in version 2.3
+! Version: 2.4.1 (cleaned)
+! Change: dedup + wildcard fix + consistency
 ! ==================================================
 
 ! ==================================================
 ! DNS CONTROL / BYPASS PROTECTION (Policy)
 ! ==================================================
 
-! --- Google ---
+! — Google —
 ||dns.google^
 ||dns.google.com^
-||dns.google.resolve^
 
-! --- Cloudflare ---
+! — Cloudflare —
 ||cloudflare-dns.com^
 ||mozilla.cloudflare-dns.com^
 ||one.one.one.one^
 ||family.cloudflare-dns.com^
 ||security.cloudflare-dns.com^
 
-! --- Quad9 ---
+! — Quad9 —
 ||dns.quad9.net^
 ||quad9.net^
 
-! --- NextDNS ---
+! — NextDNS —
 ||dns.nextdns.io^
-||*.dns.nextdns.io^
 
-! --- AdGuard DNS ---
+! — AdGuard DNS —
 ||dns.adguard-dns.com^
 ||unfiltered.adguard-dns.com^
 ||family.adguard-dns.com^
 
-! --- OpenDNS / Cisco ---
+! — OpenDNS / Cisco —
 ||doh.opendns.com^
 ||dns.opendns.com^
 ||resolver1.opendns.com^
@@ -43,39 +40,55 @@
 ||resolver3.opendns.com^
 ||resolver4.opendns.com^
 
-! --- Weitere bekannte Anbieter ---
+! — Weitere Anbieter —
 ||freedns.controld.com^
 ||dns.controld.com^
 ||dns.mullvad.net^
 ||doh.libredns.gr^
 ||dns.libredns.gr^
 
-! --- Weitere bekannte DoH-Endpunkte ---
+! — Weitere DoH —
 ||dns.switch.ch^
 ||public.dns.iij.jp^
 ||dns.oszx.co^
 
 ! ==================================================
-! CORE TRACKING (sichtbar behalten)
+! ADS / TRACKING
 ! ==================================================
-! bewusst enthalten für Log-Transparenz
-||browser-intake-datadoghq.com^
+
+! — Ads —
+||doubleclick.net^
+||googlesyndication.com^
+||adnami.io^
+||geoedge.be^
+
+! — Attribution —
+||app-measurement.com^
+||branch.io^
+||appsflyersdk.com^
+
+! — Analytics —
+||scorecardresearch.com^
+||tealiumiq.com^
+
+! — Event Pipelines —
 ||api.segment.io^
 ||cdn.segment.com^
+||browser-intake-datadoghq.com^
 
 ! ==================================================
-! APP / SDK – SPEZIALFÄLLE
+! APP / SDK
 ! ==================================================
 ||config.uca.cloud.unity3d.com^
-||.ingest.sentry.io^
+||ingest.sentry.io^
 
 ! ==================================================
-! PASSWORD / SECURITY TOOLS
+! PASSWORD / SECURITY
 ! ==================================================
 ||telemetry.1passwordservices.com^
 
 ! ==================================================
-! MICROSOFT TELEMETRY (Policy)
+! MICROSOFT TELEMETRY
 ! ==================================================
 ||mobile.events.data.microsoft.com^
 ||browser.events.data.microsoft.com^
@@ -86,7 +99,7 @@
 ||watson.telemetry.microsoft.com^
 
 ! ==================================================
-! AMAZON / FIRETV / ALEXA (Policy + sichtbar)
+! AMAZON / FIRETV
 ! ==================================================
 ||telemetry.amazon.com^
 ||device-metrics-us.amazon.com^
@@ -95,36 +108,28 @@
 ||fls-eu.amazon.com^
 ||log-ingestion.amazon.com^
 ||global.telemetry.insights.video.a2z.com^
-||.minerva.devices.a2z.com^
+||minerva.devices.a2z.com^
 
 ! ==================================================
-! META / SOCIAL TRACKING (sichtbar behalten)
+! META / SOCIAL
 ! ==================================================
 ||graph.facebook.com^
 ||connect.facebook.net^
 
 ! ==================================================
-! TIKTOK / BYTEDANCE (sichtbar behalten)
+! TIKTOK
 ! ==================================================
 ||analytics.tiktok.com^
 ||log.byteoversea.com^
 
 ! ==================================================
-! MOZILLA (optional)
+! MOZILLA
 ! ==================================================
 ||push.services.mozilla.com^
 
 ! ==================================================
-! APPLE (LOW RISK TELEMETRY REDUCTION)
+! APPLE TELEMETRY
 ! ==================================================
 ||gsp64-ssl.ls.apple.com^
 ||metrics.icloud.com^
 ||xp.apple.com^
-
-! ==================================================
-! APPLE – EXPLICIT ALLOW (KRITISCH)
-! ==================================================
-@@||mask.icloud.com^
-@@||mask-api.icloud.com^
-@@||apple-dns.net^
-@@||icloud.com^
