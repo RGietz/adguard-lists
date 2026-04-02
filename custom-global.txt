@@ -1,16 +1,42 @@
 ! ==================================================
 ! Custom Global Rules (HYBRID)
 ! Maintained by Ralf
-! Version: 2.1 (2026-04-01 18:00)
+! Version: 2.2 (2026-04-02 09:00)
+! Änderung: DNS CONTROL / BYPASS PROTECTION (Policy) angepasst.
 ! ==================================================
 
 ! ==================================================
 ! DNS CONTROL / BYPASS PROTECTION (Policy)
 ! ==================================================
+
+! --- Google DNS ---
 ||dns.google^
-||dns.nextdns.io^
+||dns.google.com^
+||dns.google.resolve^
+||dns.googleapis.com^$denyallow=dns.google
+||8.8.8.8.in-addr.arpa^
+||8.8.4.4.in-addr.arpa^
+
+! --- Cloudflare DNS ---
+||cloudflare-dns.com^
 ||one.one.one.one^
+
+! --- Quad9 DNS ---
+||dns.quad9.net^
+||quad9.net^
+
+! --- NextDNS ---
+||dns.nextdns.io^
+
+! --- AdGuard DNS ---
 ||dns.adguard-dns.com^
+
+! --- Mozilla / Firefox DoH ---
+||mozilla.cloudflare-dns.com^
+
+! --- Generic DoH patterns (optional, vorsichtig einsetzen) ---
+!||*/dns-query^
+!||*/resolve^
 
 ! ==================================================
 ! CORE TRACKING (sichtbar behalten)
