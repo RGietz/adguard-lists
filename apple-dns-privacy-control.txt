@@ -1,16 +1,33 @@
 ! ==================================================
 ! APPLE – CONTROLLED POLICY MATRIX
-! Goal: Block Private Relay, optionally reduce telemetry
 ! Maintained by Ralf
-! Version: 2.0.0 (2026-04-03)
+! Version: 2.1.0 (2026-04-03)
 !
 ! Scope:
 ! - iOS / macOS / tvOS (DNS-level)
 !
+! Profiles:
+! - Minimal
+!   - Goal: Block Private Relay only
+!   - Block: Private Relay bootstrap endpoints
+!   - Reduce: none
+!   - Risk: Low compatibility risk
+!
+! - Standard
+!   - Goal: Block Private Relay, reduce selected telemetry
+!   - Block: Private Relay bootstrap endpoints
+!   - Reduce: low-risk telemetry
+!   - Risk: Moderate compatibility risk
+!
+! - Strict
+!   - Goal: Block Private Relay, reduce Apple telemetry more aggressively
+!   - Block: Private Relay bootstrap endpoints
+!   - Reduce: low-risk and additional telemetry
+!   - Risk: Higher compatibility risk
+!
 ! Policy:
-! - Block: Private Relay bootstrap endpoints
-! - Reduce: low-risk telemetry (optional)
-! - Allow: no broad exceptions by default
+! - No broad exceptions by default
+! - Optional allow rules remain commented out
 !
 ! Notes:
 ! - Effective only within local network
@@ -18,35 +35,39 @@
 ! - No global @@ allow rules for apple.com / icloud.com / apple-dns.net
 ! ==================================================
 
-! --- APPLE PRIVATE RELAY BLOCK ---
+! --------------------------------------------------
+! MINIMAL PROFILE
+! Block Private Relay only
+! --------------------------------------------------
+
 ||mask.icloud.com^
 ||mask.apple-dns.net^
 
-! --- APPLE TELEMETRIE ---
-! Use with caution. Depending on the setup, this may slow down diagnostic or analysis functions.
+! --------------------------------------------------
+! STANDARD PROFILE
+! Uncomment to reduce selected low-risk telemetry
+! --------------------------------------------------
+
 ||metrics.icloud.com^
 ||xp.apple.com^
 ||gsp64-ssl.ls.apple.com^
-|metrics.icloud.com^
 
-! --- Opt. APPLE TELEMETRIE ---
+! --------------------------------------------------
+! STRICT PROFILE
+! Uncomment in addition to Standard profile
+! Use with caution. Depending on the setup, this may
+! affect diagnostics, analytics, or background services.
+! --------------------------------------------------
+
 ||metrics.apple.com^
 ||analytics.apple.com^
 
-! --- CORE SERVICES ALLOWLIST ---
-@@||push.apple.com^
-@@||courier.push.apple.com^
-@@||apps.apple.com^
-@@||itunes.apple.com^
-@@||mzstatic.com^
-@@||gateway.icloud.com^
-@@||setup.icloud.com^
-@@||p*-keyvalueservice.icloud.com^
+! ==================================================
+! OPTIONAL COMPATIBILITY ALLOW RULES
+! If there are issues with iCloud features,
+! uncomment candidates on a trial basis
+! ==================================================
 
-! =========================
-! OPTIONAL: if there are issues with iCloud features,
-! add these candidates on a trial basis
-! =========================
 ! @@||icloud-content.com^
 ! @@||icloud.com.cn^
 ! @@||caldav.icloud.com^
