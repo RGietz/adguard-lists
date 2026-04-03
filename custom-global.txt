@@ -1,8 +1,8 @@
 ! ==================================================
-! Custom Global Rules (HYBRID)
+! Custom Global Rules
 ! Maintained by Ralf
-! Version: 2.4.1 (cleaned)
-! Change: dedup + wildcard fix + consistency
+! Version: 2.4.2 
+! Change: Blocklists refined
 ! ==================================================
 
 ! ==================================================
@@ -76,6 +76,9 @@
 ||cdn.segment.com^
 ||browser-intake-datadoghq.com^
 
+! — Consent / Privacy Frameworks —
+||onetrust.io^
+
 ! ==================================================
 ! APP / SDK
 ! ==================================================
@@ -97,6 +100,7 @@
 ||self.events.data.microsoft.com^
 ||v10.events.data.microsoft.com^
 ||watson.telemetry.microsoft.com^
+||events.data.microsoft.com^
 
 ! ==================================================
 ! AMAZON / FIRETV
@@ -126,10 +130,3 @@
 ! MOZILLA
 ! ==================================================
 ||push.services.mozilla.com^
-
-! ==================================================
-! APPLE TELEMETRY
-! ==================================================
-||gsp64-ssl.ls.apple.com^
-||metrics.icloud.com^
-||xp.apple.com^
