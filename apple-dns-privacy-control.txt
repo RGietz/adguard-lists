@@ -1,64 +1,54 @@
 ! ==================================================
 ! APPLE – CONTROLLED POLICY MATRIX
-! Goal: Block Private Relay, allow core services
+! Goal: Block Private Relay, optionally reduce telemetry
 ! Maintained by Ralf
-! Version: 1.0.2 (2026-04-02)
+! Version: 2.0.0 (2026-04-03)
 !
 ! Scope:
 ! - iOS / macOS / tvOS (DNS-level)
 !
 ! Policy:
 ! - Block: Private Relay bootstrap endpoints
-! - Reduce: low-risk telemetry
-! - Allow: only explicitly required core services
+! - Reduce: low-risk telemetry (optional)
+! - Allow: no broad exceptions by default
 !
 ! Notes:
 ! - Effective only within local network
 ! - Optional rules are commented out
+! - No global @@ allow rules for apple.com / icloud.com / apple-dns.net
 ! ==================================================
 
-! -----------------------------
-! PRIVATE RELAY (BLOCK)
-! -----------------------------
+! --- APPLE PRIVATE RELAY BLOCK ---
 ||mask.icloud.com^
 ||mask.apple-dns.net^
 
-! -----------------------------
-! CORE SERVICES (ALLOW)
-! keep explicit and narrow
-! -----------------------------
-@@||push.apple.com^
-@@||courier.push.apple.com^
-
-@@||apps.apple.com^
-@@||itunes.apple.com^
-@@||mzstatic.com^
-
-@@||gateway.icloud.com^
-
-! Optional: enable only if actually needed
-!@@||setup.icloud.com^
-!@@||p01-keyvalueservice.icloud.com^
-!@@||p02-keyvalueservice.icloud.com^
-!@@||p03-keyvalueservice.icloud.com^
-
-! -----------------------------
-! APPLE TELEMETRY REDUCTION
-! -----------------------------
+! --- APPLE TELEMETRIE ---
+! Use with caution. Depending on the setup, this may slow down diagnostic or analysis functions.
 ||metrics.icloud.com^
 ||xp.apple.com^
 ||gsp64-ssl.ls.apple.com^
+|metrics.icloud.com^
 
-! Optional:
-!||metrics.apple.com^
-!||analytics.apple.com^
+! --- Opt. APPLE TELEMETRIE ---
+||metrics.apple.com^
+||analytics.apple.com^
 
-! -----------------------------
-! SAFETY NETS
-! uncomment only if breakage occurs
-! -----------------------------
-!@@||cdn-apple.com^
-!@@||apple.com^
-!@@||icloud.com^
-!@@||apple-dns.net^
-!@@||akadns.net^ 
+! --- CORE SERVICES ALLOWLIST ---
+@@||push.apple.com^
+@@||courier.push.apple.com^
+@@||apps.apple.com^
+@@||itunes.apple.com^
+@@||mzstatic.com^
+@@||gateway.icloud.com^
+@@||setup.icloud.com^
+@@||p*-keyvalueservice.icloud.com^
+
+! =========================
+! OPTIONAL: if there are issues with iCloud features,
+! add these candidates on a trial basis
+! =========================
+! @@||icloud-content.com^
+! @@||icloud.com.cn^
+! @@||caldav.icloud.com^
+! @@||contacts.icloud.com^
+! @@||drive.icloud.com^
