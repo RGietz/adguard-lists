@@ -1,8 +1,8 @@
 ! ==================================================
 ! Custom Global Rules
 ! Maintained by Ralf
-! Version: 2.4.3 (2026-04-04) 
-! Change: Blocklists refined (Google, Adobe, Attribution, Consent)
+! Version: 2.4.3a (2026-04-04) 
+! Change: DNS CONTROL / BYPASS PROTECTION (Policy) expanded 
 ! ==================================================
 
 ! ==================================================
@@ -12,6 +12,10 @@
 ! — Google —
 ||dns.google^
 ||dns.google.com^
+||8.8.8.8^
+||8.8.4.4^
+||[2001:4860:4860::8888]^
+||[2001:4860:4860::8844]^
 
 ! — Cloudflare —
 ||cloudflare-dns.com^
@@ -19,6 +23,10 @@
 ||one.one.one.one^
 ||family.cloudflare-dns.com^
 ||security.cloudflare-dns.com^
+||1.1.1.1^
+||1.0.0.1^
+||[2606:4700:4700::1111]^
+||[2606:4700:4700::1001]^
 
 ! — Quad9 —
 ||dns.quad9.net^
@@ -39,6 +47,8 @@
 ||resolver2.opendns.com^
 ||resolver3.opendns.com^
 ||resolver4.opendns.com^
+||208.67.222.222^
+||208.67.220.220^
 
 ! — Other providers —
 ||freedns.controld.com^
@@ -70,6 +80,7 @@
 ! — Analytics —
 ||scorecardresearch.com^
 ||tealiumiq.com^
+||eum.instana.rewe-group.com^
 
 ! — Event Pipelines —
 ||api.segment.io^
@@ -131,6 +142,7 @@
 ! META / SOCIAL
 ! ==================================================
 ||graph.facebook.com^
+||graph.instagram.com^
 ||connect.facebook.net^
 ||analytics.facebook.com^
 ||ep2.facebook.com^
