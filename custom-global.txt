@@ -1,8 +1,8 @@
 ! ==================================================
 ! Custom Global Rules
 ! Maintained by Ralf
-! Version: 2.4.2 
-! Change: Blocklists refined
+! Version: 2.4.3 (2026-04-04) 
+! Change: Blocklists refined (Google, Adobe, Attribution, Consent)
 ! ==================================================
 
 ! ==================================================
@@ -40,14 +40,14 @@
 ||resolver3.opendns.com^
 ||resolver4.opendns.com^
 
-! — Weitere Anbieter —
+! — Other providers —
 ||freedns.controld.com^
 ||dns.controld.com^
 ||dns.mullvad.net^
 ||doh.libredns.gr^
 ||dns.libredns.gr^
 
-! — Weitere DoH —
+! — Further DoH —
 ||dns.switch.ch^
 ||public.dns.iij.jp^
 ||dns.oszx.co^
@@ -57,8 +57,6 @@
 ! ==================================================
 
 ! — Ads —
-||doubleclick.net^
-||googlesyndication.com^
 ||adnami.io^
 ||geoedge.be^
 
@@ -66,6 +64,8 @@
 ||app-measurement.com^
 ||branch.io^
 ||appsflyersdk.com^
+||skan.singular.net^
+||api.revenuecat.com^
 
 ! — Analytics —
 ||scorecardresearch.com^
@@ -78,6 +78,11 @@
 
 ! — Consent / Privacy Frameworks —
 ||onetrust.io^
+||app.usercentrics.eu^
+||api.usercentrics.eu^
+||privacy-proxy.usercentrics.eu^
+||consentmanager.net^
+||cdn.cookielaw.org^
 
 ! ==================================================
 ! APP / SDK
@@ -115,18 +120,43 @@
 ||minerva.devices.a2z.com^
 
 ! ==================================================
+! Adobe
+! ==================================================
+||assets.adobedtm.com^
+||notify.adobe.io^
+||cc-api-data.adobe.io^
+||scs.adobedc.com^
+
+! ==================================================
 ! META / SOCIAL
 ! ==================================================
 ||graph.facebook.com^
 ||connect.facebook.net^
+||analytics.facebook.com^
+||ep2.facebook.com^
+||ads.facebook.com^
+
+! ==================================================
+! GOOGLE
+! ==================================================
+||firebaselogging-pa.googleapis.com^
+||firebase-settings.crashlytics.com^
+||firebaseappcheck.googleapis.com^
+||doubleclick.net^
+||googlesyndication.com^
+||googleadservices.com^
+! --- Keep an eye on the risk ---
+||firebaseremoteconfig.googleapis.com^
 
 ! ==================================================
 ! TIKTOK
 ! ==================================================
 ||analytics.tiktok.com^
+||log.tiktokv.com^
 ||log.byteoversea.com^
 
 ! ==================================================
 ! MOZILLA
 ! ==================================================
+! --- Keep an eye on the risk ---
 ||push.services.mozilla.com^
