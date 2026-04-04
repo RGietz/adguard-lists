@@ -1,12 +1,29 @@
 ! ==================================================
-! Custom Global Rules
+! Custom Policy System
 ! Maintained by Ralf
-! Version: 2.4.3a (2026-04-04) 
-! Change: DNS CONTROL / BYPASS PROTECTION (Policy) expanded 
+! Version: 3.4.1 (2026-04-04) 
+! Change: The Custom Policy System has now been developed.
+!         The classification of risk has now been added.
+!
+! Risk low
+! - Traditional tracking / analytics
+! - virtually no side effects
+!
+! Risk mid
+! - affects behaviour (features, configuration)
+!
+! Risk high
+! - significant effects are possible
+!
+! Risk very-high (services)
+! - genuine cloud infrastructure (e.g. Amazon Minerva)
 ! ==================================================
 
 ! ==================================================
 ! DNS CONTROL / BYPASS PROTECTION (Policy)
+! Risk very-high (bypass / policy enforcement)
+! - protects the entire policy
+!	- Prevents DNS bypass → critical
 ! ==================================================
 
 ! — Google —
@@ -64,6 +81,7 @@
 
 ! ==================================================
 ! ADS / TRACKING
+! Risk low
 ! ==================================================
 
 ! — Ads —
@@ -98,17 +116,20 @@
 ! ==================================================
 ! APP / SDK
 ! ==================================================
+! Risk low
 ||config.uca.cloud.unity3d.com^
 ||ingest.sentry.io^
 
 ! ==================================================
 ! PASSWORD / SECURITY
 ! ==================================================
+! Risk low
 ||telemetry.1passwordservices.com^
 
 ! ==================================================
 ! MICROSOFT TELEMETRY
 ! ==================================================
+! Risk low
 ||mobile.events.data.microsoft.com^
 ||browser.events.data.microsoft.com^
 ||vortex.data.microsoft.com^
@@ -121,18 +142,26 @@
 ! ==================================================
 ! AMAZON / FIRETV
 ! ==================================================
+! Risk low
 ||telemetry.amazon.com^
 ||device-metrics-us.amazon.com^
 ||device-metrics-us-2.amazon.com^
+
+! Risk mid
 ||fls-na.amazon.com^
 ||fls-eu.amazon.com^
 ||log-ingestion.amazon.com^
+
+! Risk high
 ||global.telemetry.insights.video.a2z.com^
+
+! Risk very-high
 ||minerva.devices.a2z.com^
 
 ! ==================================================
 ! Adobe
 ! ==================================================
+! Risk low
 ||assets.adobedtm.com^
 ||notify.adobe.io^
 ||cc-api-data.adobe.io^
@@ -141,6 +170,7 @@
 ! ==================================================
 ! META / SOCIAL
 ! ==================================================
+! Risk low
 ||graph.facebook.com^
 ||graph.instagram.com^
 ||connect.facebook.net^
@@ -151,18 +181,23 @@
 ! ==================================================
 ! GOOGLE
 ! ==================================================
+! Risk low
 ||firebaselogging-pa.googleapis.com^
 ||firebase-settings.crashlytics.com^
 ||firebaseappcheck.googleapis.com^
+
+! Risk low (ads)
 ||doubleclick.net^
 ||googlesyndication.com^
 ||googleadservices.com^
-! --- Keep an eye on the risk ---
+
+! Risk mid
 ||firebaseremoteconfig.googleapis.com^
 
 ! ==================================================
 ! TIKTOK
 ! ==================================================
+! Risk low
 ||analytics.tiktok.com^
 ||log.tiktokv.com^
 ||log.byteoversea.com^
@@ -170,5 +205,5 @@
 ! ==================================================
 ! MOZILLA
 ! ==================================================
-! --- Keep an eye on the risk ---
+! Risk high
 ||push.services.mozilla.com^
