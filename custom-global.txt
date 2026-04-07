@@ -159,6 +159,7 @@
 
 ||graph.facebook.com^
 ||graph.instagram.com^
+||ep*.facebook.com^
 ! Category: API
 ! Risk: high
 ! Impact: login / content fails
