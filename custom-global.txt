@@ -1,7 +1,7 @@
 ! ==================================================
 ! Title: Ralf's Custom Policy System (Optimized)
 ! Description: Complementary policy filter focused on DNS bypass prevention, telemetry reduction, and behavioral control. Designed to extend existing blocklists with stricter policy enforcement and risk-based filtering.
-! Version: 4.4.7
+! Version: 4.4.7a
 ! Last modified: 2026-04-07
 ! Author: Ralf
 ! Expires: 7 days
@@ -56,13 +56,10 @@
 ||[2606:4700:4700::1111]^
 ||[2606:4700:4700::1001]^
 
-||resolver*.opendns.com^
-
 ! — Other providers —
 ||dns.libredns.gr^
-
-! — Additional DoH —
 ||dns.oszx.co^
+||resolver*.opendns.com^
 
 ! ==================================================
 ! ADS / TRACKING
