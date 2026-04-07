@@ -1,7 +1,7 @@
-!! ==================================================
+! ==================================================
 ! Title: Ralf's Custom Policy System (Optimized)
 ! Description: Complementary policy filter focused on DNS bypass prevention, telemetry reduction, and behavioral control. Designed to extend existing blocklists with stricter policy enforcement and risk-based filtering.
-! Version: 4.2.0
+! Version: 4.4.7
 ! Last modified: 2026-04-07
 ! Author: Ralf
 ! Expires: 7 days
@@ -38,8 +38,9 @@
 ! ==================================================
 ! Category: resolver / DoH
 ! Risk: very-high
-
 ! — Google —
+! Purpose: DoH endpoint
+! Impact: blocks external DNS resolution
 ||8.8.8.8^
 ||8.8.4.4^
 ! Purpose: public resolver IP
@@ -49,21 +50,30 @@
 ||[2001:4860:4860::8844]^
 
 ! — Cloudflare —
+! Purpose: DoH / DNS endpoints
 ||1.1.1.1^
 ||1.0.0.1^
-
 ||[2606:4700:4700::1111]^
 ||[2606:4700:4700::1001]^
 
-! — Quad9 —
-||quad9.net^
-||9.9.9.9^
+||resolver*.opendns.com^
+
+! — Other providers —
+||dns.libredns.gr^
+
+! — Additional DoH —
+||dns.oszx.co^
 
 ! ==================================================
 ! ADS / TRACKING
 ! ==================================================
 
 ! — Ads —
+||branch.io^
+! Category: deep linking
+! Risk: mid
+! Impact: install / redirect issues
+
 ||appsflyersdk.com^
 ! Category: attribution
 ! Risk: mid
@@ -84,16 +94,37 @@
 ||eum.instana.rewe-group.com^
 ! Risk: low
 
+! — Event pipelines —
+||api.segment.io^
+||cdn.segment.com^
+! Category: data pipeline
+! Risk: mid
+! Impact: tracking + config degradation
+
 ! — Consent frameworks —
-||*.usercentrics.eu^
+||usercentrics.eu^
 ! Category: consent platform
 ! Risk: mid
 ! Impact: consent UI may break
 
+||onetrust.io^
 ||consentmanager.net^
 ||cdn.cookielaw.org^
 ! Category: consent
 ! Risk: mid
+
+! ==================================================
+! APP / SDK
+! ==================================================
+
+||config.uca.cloud.unity3d.com^
+! Category: remote config
+! Risk: mid
+! Impact: feature flags missing
+
+||ingest.sentry.io^
+! Category: error reporting
+! Risk: low
 
 ! ==================================================
 ! PASSWORD / SECURITY
@@ -107,8 +138,10 @@
 ! MICROSOFT TELEMETRY
 ! ==================================================
 
-||*.events.data.microsoft.com^
+||events.data.microsoft.com^
 ||vortex.data.microsoft.com^
+||settings-win.data.microsoft.com^
+||watson.telemetry.microsoft.com^
 ! Category: telemetry
 ! Risk: low
 
@@ -117,15 +150,23 @@
 ! ==================================================
 
 ! — Telemetry —
+||telemetry.amazon.com^
 ||device-metrics-us*.amazon.com^
 ! Category: telemetry
 ! Risk: low
 
 ! — Logging / Config —
-||fls-*.amazon.com^
+||fls-na.amazon.com^
+||fls-eu.amazon.com^
+||log-ingestion.amazon.com^
 ! Category: logging / config
 ! Risk: mid
 ! Impact: feature degradation possible
+
+! — High impact telemetry —
+||global.telemetry.insights.video.a2z.com^
+! Category: service telemetry
+! Risk: high
 
 ! — Critical backend —
 ||minerva.devices.a2z.com^
@@ -159,7 +200,6 @@
 
 ||graph.facebook.com^
 ||graph.instagram.com^
-||ep*.facebook.com^
 ! Category: API
 ! Risk: high
 ! Impact: login / content fails
@@ -168,7 +208,10 @@
 ! Category: SDK delivery
 ! Risk: high
 
-||ads.facebook.com^
+||ep2.facebook.com^
+! Category: telemetry
+! Risk: low
+
 ! Category: ads
 ! Risk: low
 
@@ -190,11 +233,16 @@
 ! Category: remote config
 ! Risk: mid
 
+! — Ads —
+||doubleclick.net^
+||googleadservices.com^
+! Category: ads
+! Risk: low
+
 ! ==================================================
 ! TIKTOK
 ! ==================================================
 
-||analytics.tiktok.com^
 ||log.tiktokv.com^
 ! Category: telemetry
 ! Risk: low
