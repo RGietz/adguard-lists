@@ -40,11 +40,6 @@
 ! Risk: very-high
 
 ! — Google —
-||dns.google^
-||dns.google.com^
-! Purpose: DoH endpoint
-! Impact: blocks external DNS resolution
-
 ||8.8.8.8^
 ||8.8.4.4^
 ! Purpose: public resolver IP
@@ -54,13 +49,6 @@
 ||[2001:4860:4860::8844]^
 
 ! — Cloudflare —
-||cloudflare-dns.com^
-||mozilla.cloudflare-dns.com^
-||one.one.one.one^
-||family.cloudflare-dns.com^
-||security.cloudflare-dns.com^
-! Purpose: DoH / DNS endpoints
-
 ||1.1.1.1^
 ||1.0.0.1^
 
@@ -68,52 +56,14 @@
 ||[2606:4700:4700::1001]^
 
 ! — Quad9 —
-||dns.quad9.net^
 ||quad9.net^
-
-! — NextDNS —
-||dns.nextdns.io^
-
-! — AdGuard DNS —
-||*.adguard-dns.com^
-
-! — OpenDNS —
-||doh.opendns.com^
-||dns.opendns.com^
-||resolver*.opendns.com^
-
-! — Other providers —
-||dns.controld.com^
-||freedns.controld.com^
-||dns.mullvad.net^
-||dns.libredns.gr^
-||doh.libredns.gr^
-
-! — Additional DoH —
-||dns.switch.ch^
-||public.dns.iij.jp^
-||dns.oszx.co^
+||9.9.9.9^
 
 ! ==================================================
 ! ADS / TRACKING
 ! ==================================================
 
 ! — Ads —
-||adnami.io^
-! Category: advertising
-! Risk: low
-! Impact: none
-
-||geoedge.be^
-! Category: ad fraud detection
-! Risk: low
-
-! — Attribution —
-||branch.io^
-! Category: deep linking
-! Risk: mid
-! Impact: install / redirect issues
-
 ||appsflyersdk.com^
 ! Category: attribution
 ! Risk: mid
@@ -131,25 +81,7 @@
 ! Risk: high
 ! Impact: purchases / entitlements fail
 
-! — Analytics —
-||scorecardresearch.com^
-! Risk: low
-
-||tealiumiq.com^
-! Category: tag manager
-! Risk: mid
-
 ||eum.instana.rewe-group.com^
-! Risk: low
-
-! — Event pipelines —
-||api.segment.io^
-||cdn.segment.com^
-! Category: data pipeline
-! Risk: mid
-! Impact: tracking + config degradation
-
-||browser-intake-datadoghq.com^
 ! Risk: low
 
 ! — Consent frameworks —
@@ -158,24 +90,10 @@
 ! Risk: mid
 ! Impact: consent UI may break
 
-||onetrust.io^
 ||consentmanager.net^
 ||cdn.cookielaw.org^
 ! Category: consent
 ! Risk: mid
-
-! ==================================================
-! APP / SDK
-! ==================================================
-
-||config.uca.cloud.unity3d.com^
-! Category: remote config
-! Risk: mid
-! Impact: feature flags missing
-
-||ingest.sentry.io^
-! Category: error reporting
-! Risk: low
 
 ! ==================================================
 ! PASSWORD / SECURITY
@@ -191,8 +109,6 @@
 
 ||*.events.data.microsoft.com^
 ||vortex.data.microsoft.com^
-||settings-win.data.microsoft.com^
-||watson.telemetry.microsoft.com^
 ! Category: telemetry
 ! Risk: low
 
@@ -201,23 +117,15 @@
 ! ==================================================
 
 ! — Telemetry —
-||telemetry.amazon.com^
 ||device-metrics-us*.amazon.com^
 ! Category: telemetry
 ! Risk: low
 
 ! — Logging / Config —
-||fls-na.amazon.com^
-||fls-eu.amazon.com^
-||log-ingestion.amazon.com^
+||fls-*.amazon.com^
 ! Category: logging / config
 ! Risk: mid
 ! Impact: feature degradation possible
-
-! — High impact telemetry —
-||global.telemetry.insights.video.a2z.com^
-! Category: service telemetry
-! Risk: high
 
 ! — Critical backend —
 ||minerva.devices.a2z.com^
@@ -259,11 +167,6 @@
 ! Category: SDK delivery
 ! Risk: high
 
-||analytics.facebook.com^
-||ep2.facebook.com^
-! Category: telemetry
-! Risk: low
-
 ||ads.facebook.com^
 ! Category: ads
 ! Risk: low
@@ -286,20 +189,12 @@
 ! Category: remote config
 ! Risk: mid
 
-! — Ads —
-||doubleclick.net^
-||googlesyndication.com^
-||googleadservices.com^
-! Category: ads
-! Risk: low
-
 ! ==================================================
 ! TIKTOK
 ! ==================================================
 
 ||analytics.tiktok.com^
 ||log.tiktokv.com^
-||log.byteoversea.com^
 ! Category: telemetry
 ! Risk: low
 
