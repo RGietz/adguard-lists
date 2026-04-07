@@ -1,8 +1,8 @@
 ! ==================================================
 ! APPLE – CONTROLLED POLICY MATRIX
 ! Maintained by Ralf
-! Version: 2.1.0 (2026-04-03)
-!
+! Version: 2.4.0 (2026-04-07)
+! Update: Removal of entries that appear in other lists. 
 ! Scope:
 ! - iOS / macOS / tvOS (DNS-level)
 !
@@ -40,7 +40,6 @@
 ! Block Private Relay only
 ! --------------------------------------------------
 
-||mask.icloud.com^
 ||mask.apple-dns.net^
 
 ! --------------------------------------------------
@@ -48,7 +47,6 @@
 ! Uncomment to reduce selected low-risk telemetry
 ! --------------------------------------------------
 
-||metrics.icloud.com^
 ||xp.apple.com^
 ||gsp64-ssl.ls.apple.com^
 
@@ -61,15 +59,3 @@
 
 ||metrics.apple.com^
 ||analytics.apple.com^
-
-! ==================================================
-! OPTIONAL COMPATIBILITY ALLOW RULES
-! If there are issues with iCloud features,
-! uncomment candidates on a trial basis
-! ==================================================
-
-! @@||icloud-content.com^
-! @@||icloud.com.cn^
-! @@||caldav.icloud.com^
-! @@||contacts.icloud.com^
-! @@||drive.icloud.com^
