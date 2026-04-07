@@ -1,36 +1,55 @@
-! ==================================================
-! Custom Policy System
-! Maintained by Ralf
-! Version: 3.4.1 (2026-04-04) 
-! Change: The Custom Policy System has now been developed.
-!         The classification of risk has now been added.
+!! ==================================================
+! Title: Ralf's Custom Policy System (Optimized)
+! Description: Complementary policy filter focused on DNS bypass prevention, telemetry reduction, and behavioral control. Designed to extend existing blocklists with stricter policy enforcement and risk-based filtering.
+! Version: 4.2.0
+! Last modified: 2026-04-07
+! Author: Ralf
+! Expires: 7 days
 !
-! Risk low
-! - Traditional tracking / analytics
-! - virtually no side effects
-!
-! Risk mid
-! - affects behaviour (features, configuration)
-!
-! Risk high
-! - significant effects are possible
-!
-! Risk very-high (services)
-! - genuine cloud infrastructure (e.g. Amazon Minerva)
 ! ==================================================
-
+! Dependencies / Recommended Base Lists:
+! - OSID Big
+! - HaGeZi's Encrypted DNS Bypass DNS Blocklist
+! - AdGuard Tracking Protection
+! - Apple DNS Privacy-Control (private, not included)
+!
 ! ==================================================
-! DNS CONTROL / BYPASS PROTECTION (Policy)
-! Risk very-high (bypass / policy enforcement)
-! - protects the entire policy
-!	- Prevents DNS bypass → critical
+! Scope:
+! - DNS / DoH bypass mitigation
+! - Telemetry and analytics reduction
+! - Behavioral / remote-config interference
+! - Selective blocking of critical cloud backends (high-risk)
+!
 ! ==================================================
+! Risk Model:
+! low       = telemetry only, negligible impact
+! mid       = affects UX / attribution / configuration
+! high      = may break core functionality (login, push, purchase)
+! very-high = infrastructure / policy enforcement / DNS bypass
+!
+! ==================================================
+! Notes:
+! - This list is NOT a standalone filter and should be used in combination with the base lists above.
+! - Focus is on policy enforcement, not maximal ad blocking.
+! - Some rules may intentionally affect application behavior.
+! ==================================================
+! ==================================================
+! DNS CONTROL / BYPASS PROTECTION
+! ==================================================
+! Category: resolver / DoH
+! Risk: very-high
 
 ! — Google —
 ||dns.google^
 ||dns.google.com^
+! Purpose: DoH endpoint
+! Impact: blocks external DNS resolution
+
 ||8.8.8.8^
 ||8.8.4.4^
+! Purpose: public resolver IP
+! Impact: engine-dependent effectiveness
+
 ||[2001:4860:4860::8888]^
 ||[2001:4860:4860::8844]^
 
@@ -40,8 +59,11 @@
 ||one.one.one.one^
 ||family.cloudflare-dns.com^
 ||security.cloudflare-dns.com^
+! Purpose: DoH / DNS endpoints
+
 ||1.1.1.1^
 ||1.0.0.1^
+
 ||[2606:4700:4700::1111]^
 ||[2606:4700:4700::1001]^
 
@@ -53,157 +75,239 @@
 ||dns.nextdns.io^
 
 ! — AdGuard DNS —
-||dns.adguard-dns.com^
-||unfiltered.adguard-dns.com^
-||family.adguard-dns.com^
+||*.adguard-dns.com^
 
-! — OpenDNS / Cisco —
+! — OpenDNS —
 ||doh.opendns.com^
 ||dns.opendns.com^
-||resolver1.opendns.com^
-||resolver2.opendns.com^
-||resolver3.opendns.com^
-||resolver4.opendns.com^
-||208.67.222.222^
-||208.67.220.220^
+||resolver*.opendns.com^
 
 ! — Other providers —
-||freedns.controld.com^
 ||dns.controld.com^
+||freedns.controld.com^
 ||dns.mullvad.net^
-||doh.libredns.gr^
 ||dns.libredns.gr^
+||doh.libredns.gr^
 
-! — Further DoH —
+! — Additional DoH —
 ||dns.switch.ch^
 ||public.dns.iij.jp^
 ||dns.oszx.co^
 
 ! ==================================================
 ! ADS / TRACKING
-! Risk low
 ! ==================================================
 
 ! — Ads —
 ||adnami.io^
+! Category: advertising
+! Risk: low
+! Impact: none
+
 ||geoedge.be^
+! Category: ad fraud detection
+! Risk: low
 
 ! — Attribution —
-||app-measurement.com^
 ||branch.io^
+! Category: deep linking
+! Risk: mid
+! Impact: install / redirect issues
+
 ||appsflyersdk.com^
+! Category: attribution
+! Risk: mid
+
 ||skan.singular.net^
+! Category: SKAdNetwork attribution
+! Risk: mid
+
+||app-measurement.com^
+! Category: Google attribution
+! Risk: low
+
 ||api.revenuecat.com^
+! Category: subscription backend
+! Risk: high
+! Impact: purchases / entitlements fail
 
 ! — Analytics —
 ||scorecardresearch.com^
-||tealiumiq.com^
-||eum.instana.rewe-group.com^
+! Risk: low
 
-! — Event Pipelines —
+||tealiumiq.com^
+! Category: tag manager
+! Risk: mid
+
+||eum.instana.rewe-group.com^
+! Risk: low
+
+! — Event pipelines —
 ||api.segment.io^
 ||cdn.segment.com^
-||browser-intake-datadoghq.com^
+! Category: data pipeline
+! Risk: mid
+! Impact: tracking + config degradation
 
-! — Consent / Privacy Frameworks —
+||browser-intake-datadoghq.com^
+! Risk: low
+
+! — Consent frameworks —
+||*.usercentrics.eu^
+! Category: consent platform
+! Risk: mid
+! Impact: consent UI may break
+
 ||onetrust.io^
-||app.usercentrics.eu^
-||api.usercentrics.eu^
-||privacy-proxy.usercentrics.eu^
 ||consentmanager.net^
 ||cdn.cookielaw.org^
+! Category: consent
+! Risk: mid
 
 ! ==================================================
 ! APP / SDK
 ! ==================================================
-! Risk low
+
 ||config.uca.cloud.unity3d.com^
+! Category: remote config
+! Risk: mid
+! Impact: feature flags missing
+
 ||ingest.sentry.io^
+! Category: error reporting
+! Risk: low
 
 ! ==================================================
 ! PASSWORD / SECURITY
 ! ==================================================
-! Risk low
+
 ||telemetry.1passwordservices.com^
+! Category: telemetry
+! Risk: low
 
 ! ==================================================
 ! MICROSOFT TELEMETRY
 ! ==================================================
-! Risk low
-||mobile.events.data.microsoft.com^
-||browser.events.data.microsoft.com^
+
+||*.events.data.microsoft.com^
 ||vortex.data.microsoft.com^
 ||settings-win.data.microsoft.com^
-||self.events.data.microsoft.com^
-||v10.events.data.microsoft.com^
 ||watson.telemetry.microsoft.com^
-||events.data.microsoft.com^
+! Category: telemetry
+! Risk: low
 
 ! ==================================================
 ! AMAZON / FIRETV
 ! ==================================================
-! Risk low
-||telemetry.amazon.com^
-||device-metrics-us.amazon.com^
-||device-metrics-us-2.amazon.com^
 
-! Risk mid
+! — Telemetry —
+||telemetry.amazon.com^
+||device-metrics-us*.amazon.com^
+! Category: telemetry
+! Risk: low
+
+! — Logging / Config —
 ||fls-na.amazon.com^
 ||fls-eu.amazon.com^
 ||log-ingestion.amazon.com^
+! Category: logging / config
+! Risk: mid
+! Impact: feature degradation possible
 
-! Risk high
+! — High impact telemetry —
 ||global.telemetry.insights.video.a2z.com^
+! Category: service telemetry
+! Risk: high
 
-! Risk very-high
+! — Critical backend —
 ||minerva.devices.a2z.com^
+! Category: device backend
+! Risk: very-high
+! Impact: device functionality may break
 
 ! ==================================================
-! Adobe
+! ADOBE
 ! ==================================================
-! Risk low
+
 ||assets.adobedtm.com^
+! Category: tag manager
+! Risk: mid
+
 ||notify.adobe.io^
+! Category: messaging
+! Risk: mid
+
 ||cc-api-data.adobe.io^
+! Category: telemetry
+! Risk: low
+
 ||scs.adobedc.com^
+! Category: document services
+! Risk: mid
 
 ! ==================================================
 ! META / SOCIAL
 ! ==================================================
-! Risk low
+
 ||graph.facebook.com^
 ||graph.instagram.com^
+! Category: API
+! Risk: high
+! Impact: login / content fails
+
 ||connect.facebook.net^
+! Category: SDK delivery
+! Risk: high
+
 ||analytics.facebook.com^
 ||ep2.facebook.com^
+! Category: telemetry
+! Risk: low
+
 ||ads.facebook.com^
+! Category: ads
+! Risk: low
 
 ! ==================================================
-! GOOGLE
+! GOOGLE / FIREBASE
 ! ==================================================
-! Risk low
+
 ||firebaselogging-pa.googleapis.com^
 ||firebase-settings.crashlytics.com^
-||firebaseappcheck.googleapis.com^
+! Category: telemetry
+! Risk: low
 
-! Risk low (ads)
+||firebaseappcheck.googleapis.com^
+! Category: security / attestation
+! Risk: high
+! Impact: API access denied
+
+||firebaseremoteconfig.googleapis.com^
+! Category: remote config
+! Risk: mid
+
+! — Ads —
 ||doubleclick.net^
 ||googlesyndication.com^
 ||googleadservices.com^
-
-! Risk mid
-||firebaseremoteconfig.googleapis.com^
+! Category: ads
+! Risk: low
 
 ! ==================================================
 ! TIKTOK
 ! ==================================================
-! Risk low
+
 ||analytics.tiktok.com^
 ||log.tiktokv.com^
 ||log.byteoversea.com^
+! Category: telemetry
+! Risk: low
 
 ! ==================================================
 ! MOZILLA
 ! ==================================================
-! Risk high
+
 ||push.services.mozilla.com^
+! Category: push service
+! Risk: high
+! Impact: push notifications fail
