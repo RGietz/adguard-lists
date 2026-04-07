@@ -1,7 +1,7 @@
 ! ==================================================
 ! Title: Ralf's Custom Policy System (Optimized)
 ! Description: Complementary policy filter focused on DNS bypass prevention, telemetry reduction, and behavioral control. Designed to extend existing blocklists with stricter policy enforcement and risk-based filtering.
-! Version: 4.4.7a
+! Version: 4.4.7b
 ! Last modified: 2026-04-07
 ! Author: Ralf
 ! Expires: 7 days
@@ -174,10 +174,6 @@
 ! ==================================================
 ! ADOBE
 ! ==================================================
-
-||assets.adobedtm.com^
-! Category: tag manager
-! Risk: mid
 
 ||notify.adobe.io^
 ! Category: messaging
